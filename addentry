@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script type="text/javascript">
+function clearText() {
+	// Get value of title and body
+	document.getElementById("title").value = "";
+	document.getElementById("body").value = "";
+}
+
+function addText() {
+	// Get value of title and body
+	var title = document.getElementById("title").value;
+	var content = document.getElementById("body").value;
+	
+	if(title!=""&&body!="") {
+		var ajax = new XMLHttpRequest();
+		var now = new Date();
+		ajax.open("GET","process.php?title="+title+"&content="+content+"&time="+now.toLocaleString("en-US"),false);
+		ajax.send();
+	}
+	else {
+		document.getElementById("message").innerHTML = "Sorry, there is no text which could be added!";
+	}
+}
+function previewText() {
+	// Get value of title and body
+	var title = document.getElementById("title").value;
+	var body = document.getElementById("body").value;
+	
+	if(title!=""&&body!="") {
+		document.getElementById("message").innerHTML = "<h1>"+title+"</h1><p>"+body+"</p><hr></hr>";
+		var now = new Date();
+		document.getElementById("message").innerHTML += now.toLocaleString("en-US");
+	}
+	else {
+		document.getElementById("message").innerHTML = "Sorry, there is no entry which could be displayed!";
+	}
+}
+</script>
+
+</head>
+<body>
+
+<div id="wrap">
+
+<h1>Add an entry to My Own Blog!</h1>
+<div id="instructions">
+	Instructions: Enter a title and body for your blog entry. In the body, you can use simple HTML formatting elements such as <<span>b</span>> (bold) and <<span>i</span>> (italic) as well as the hyperlink "anchor" element <<span>a</span>>.
+</div>
+<table>
+	<tr><td><label>Title: </label></td><td><input id="title" type="text"/></td></tr>
+	<tr><td><label>Body: </label></td><td><textarea id="body" type="text"rows="10" cols="50"></textarea></td></tr>
+	<tr><td></td><td><button onclick="previewText()">Preview</button><button onclick="addText()"><a href="entryPlusComments.html">Add Entry</a></button><button onclick="clearText()">Clear</button></td></tr>
+</table>
+<div id="message"></div>
+
+</div>
+
+</body>
+</html>
