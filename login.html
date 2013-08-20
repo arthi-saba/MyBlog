@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script type="text/javascript">
+
+function validate() {
+
+// Get value of input fields
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+
+// Validate User and password
+if(username=="admin" && password=="pass") {
+	window.location = "addentry.html";
+}
+else {
+	document.getElementById("message").innerHTML = "Sorry, your username or password is incorrect!";
+}
+
+}
+</script>
+
+</head>
+<body>
+<div id="wrap">
+
+<h1>Log in to My Own Blog to begin Blogging!</h1>
+
+<label>Username: </label><input id="username" type="text"/><br/>
+<label>Password: </label><input id="password" type="password"/><br/>
+<button onclick="validate()">Login</button>
+
+<div id="message"></div>
+
+</div>
+</body>
+</html>
